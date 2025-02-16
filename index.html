@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="MVTokenFlow for high-quality 4D content creation from monocular videos.">
+  <meta name="keywords" content="Diffusion, Gaussians, 4D content creation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MVTokenFlow: High-quality 4D Content Generation using Multiview Token Flow</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">MVTokenFlow: High-quality 4D Content Generation using Multiview
+              Token Flow</h1>
+            <h4 style="color:#5a6268;">ICLR 2025</h4>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://github.com/JudgementH">Hanzhuo Huang</a><sup>1*</sup>,</span>
+              <span class="author-block">
+                <a href="https://liuyuan-pal.github.io/">Yuan Liu</a><sup>2*</sup>,</span>
+              <span class="author-block">
+                Ge Zheng<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://jiepengwang.github.io/">Jiepeng Wang</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://frank-zy-dou.github.io/">Zhiyang Dou</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://faculty.sist.shanghaitech.edu.cn/yangsibei/">Sibei Yang</a><sup>1&dagger;</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>ShanghaiTech,</span>
+              <span class="author-block"><sup>2</sup>HKUST,</span>
+              <span class="author-block"><sup>3</sup>HKU</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- arXiv Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="hero">
+    <div class="container is-max-desktop is-centered">
+      <video autoplay muted loop playsinline height="100%" style="max-width: 768px;">
+        <source src="./static/videos/demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              In this paper, we present MVTokenFlow for high-quality 4D content creation from monocular videos. Recent
+              advancements in generative models such as video diffusion models and multiview diffusion models enable us
+              to create videos or 3D models. However, extending these generative models for dynamic 4D content creation
+              is still a challenging task that requires the generated content to be consistent spatially and temporally.
+              To address this challenge, MVTokenFlow utilizes the multiview diffusion model to generate multiview images
+              on different timesteps, which attains spatial consistency across different viewpoints and allows us to
+              reconstruct a reasonable coarse 4D field. Then, \methodname further regenerates all the multiview images
+              using the rendered 2D flows as guidance. The 2D flows effectively associate pixels from different
+              timesteps and improve the temporal consistency by reusing tokens in the regeneration process. Finally, the
+              regenerated images are spatiotemporally consistent and utilized to refine the coarse 4D field to get a
+              high-quality 4D field. Experiments demonstrate the effectiveness of our design and show significantly
+              improved quality than baseline methods.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <img src="./static/images/teaser.jpg" alt="teaser image." />
+      <p>
+        Given an input monocular video containing a foreground dynamic object (left), MVTokenFlow generates a
+        4D video represented by a dynamic 3D Gaussian field (right) by utilizing a multiview diffusion model and a token
+        propagation method to improve both the spatial and temporal consistency. On the right, we also show the colors
+        of these Gaussian spheres and the rendered normal maps besides the rendered RGB images.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns">
+        <div class="content">
+          <h2 class="title is-3">Method</h2>
+          <img src="./static/images/pipeline.jpg" alt="pipeline." />
+          <p>
+            <b>Overview</b>. Given an input video that can be generated by video diffusion models, we first
+            apply the Era3D to generate the multiview-consistent images and normal maps for each
+            timestep. Then, we reconstruct a coarse dynamic 3D Gaussian field field from the generated multiview images.
+            After that, we use the coarse dynamic 3D Gaussian field to render 2D flows to guide the re-generation of the
+            multiview images of Era3D, which greatly improves the temporal consistency and image quality. Finally, the
+            regenerated images are used in the refinement of our dynamic 3D Gaussian field to improve the quality.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns">
+        <div class="content">
+          <h2 class="title is-3">Results</h2>
+          <img src="./static/images/results.jpg" alt="results." />
+          <p>
+            Qualitative comparison on spatial consistency of our method with baseline methods.
+          </p>
+
+          <h4 class="title is-4">Flow map</h2>
+            <div class="columns">
+              <div class="column">
+                <img src="./static/images/add_in.jpg" alt="add in." />
+              </div>
+              <div class="column">
+                <img src="./static/images/add_out.jpg" alt="add out." />
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns">
+        <div class="content" style="width: 100%;">
+          <h2 class="title is-3" style="text-align: left;">Video-to-4D Results</h2>
+
+          <div class="columns">
+            <div class="column" , style="border-right: 2px dashed #000;">
+              <div class="container is-centered" style="max-width:768px; display: flex; justify-content: center;">
+                <table style="margin: auto; text-align: center;">
+                  <tr>
+                    <th>View 1</th>
+                    <th>Optical Flow 1</th>
+                    <th>View 2</th>
+                    <th>Optical Flow 2</th>
+                  </tr>
+                </table>
+              </div>
+              <br>
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/scaring_skull/video.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/firing_pistol/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/looking_around_jack_russell/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/trump/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/walking_siamese_cat/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/walking_aurorus/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/dancing_patrick_star/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/blooming_rose/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+            </div>
+
+            <div class="column">
+              <div class="container is-centered" style="max-width:768px; display: flex; justify-content: center;">
+                <table style="margin: auto; text-align: center;">
+                  <tr>
+                    <th>View 1</th>
+                    <th>Optical Flow 1</th>
+                    <th>View 2</th>
+                    <th>Optical Flow 2</th>
+                  </tr>
+                </table>
+              </div>
+              <br>
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/deforming_toy_rabbit/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/feeding_squirrel/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/flying_ironman/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/looking_up_kitten/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/pecking_blue_jay/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/swimming_guppie/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/walking_astronaut/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+
+              <div class="container" style="max-width: 768px;">
+                <div class="compositional captioned_videos">
+                  <video class="video" autoplay loop playsinline muted>
+                    <source src="./static/videos/sighing_frog/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <br>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+
+      </code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              We thank the <a herf="https://github.com/nerfies/nerfies.github.io">Nerfies</a> team for providing this
+              amazing website template.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
