@@ -142,7 +142,7 @@
               is still a challenging task that requires the generated content to be consistent spatially and temporally.
               To address this challenge, MVTokenFlow utilizes the multiview diffusion model to generate multiview images
               on different timesteps, which attains spatial consistency across different viewpoints and allows us to
-              reconstruct a reasonable coarse 4D field. Then, \methodname further regenerates all the multiview images
+              reconstruct a reasonable coarse 4D field. Then, MVTokenFlow further regenerates all the multiview images
               using the rendered 2D flows as guidance. The 2D flows effectively associate pixels from different
               timesteps and improve the temporal consistency by reusing tokens in the regeneration process. Finally, the
               regenerated images are spatiotemporally consistent and utilized to refine the coarse 4D field to get a
